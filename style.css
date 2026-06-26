@@ -1,0 +1,265 @@
+/* ===== BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #1a0a00;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* ===== ÉCRANS ===== */
+.ecran {
+    display: none;
+    padding: 20px;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.ecran.actif {
+    display: block;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 30px 0 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #f5c842;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* ===== STATUT ===== */
+.statut {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.statut.ouvert { background: #2d8a2d; }
+.statut.ferme { background: #8a2d2d; }
+.statut.drive { background: #8a6a2d; }
+
+/* ===== BOUTONS ===== */
+.btn-barista {
+    background: transparent;
+    border: 2px solid #f5c842;
+    color: #f5c842;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.grille-boutons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-choix {
+    background: #3d1a00;
+    border: 2px solid #f5c842;
+    color: #fff;
+    padding: 25px 15px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-choix:hover, .btn-choix.selectionne {
+    background: #f5c842;
+    color: #1a0a00;
+    transform: scale(1.05);
+}
+
+/* ===== ONGLETS ===== */
+.onglets {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.onglet {
+    background: #3d1a00;
+    border: 1px solid #666;
+    color: #ccc;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.onglet.actif-onglet {
+    background: #f5c842;
+    color: #1a0a00;
+    border-color: #f5c842;
+    font-weight: bold;
+}
+
+/* ===== OPTIONS ===== */
+.section-option {
+    background: #3d1a00;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.section-option h3 {
+    color: #f5c842;
+    margin-bottom: 10px;
+}
+
+.grille-boutons-small {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.btn-option {
+    background: #1a0a00;
+    border: 2px solid #555;
+    color: #ccc;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.btn-option.selectionne {
+    background: #f5c842;
+    color: #1a0a00;
+    border-color: #f5c842;
+    font-weight: bold;
+}
+
+/* ===== RECAP ===== */
+.carte-recap {
+    background: #3d1a00;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.recap-ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #555;
+}
+
+.recap-ligne:last-child {
+    border-bottom: none;
+}
+
+.recap-ligne span {
+    color: #aaa;
+}
+
+/* ===== BOUTONS PRINCIPAUX ===== */
+.btn-principal, .btn-confirmer {
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn-principal {
+    background: #f5c842;
+    color: #1a0a00;
+}
+
+.btn-confirmer {
+    background: #2d8a2d;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* ===== RETOUR ===== */
+.btn-retour {
+    background: transparent;
+    border: none;
+    color: #f5c842;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+/* ===== BARISTA MODE ===== */
+.btn-statut {
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-ouvert { background: #2d8a2d; color: white; }
+.btn-ferme { background: #8a2d2d; color: white; }
+.btn-drive { background: #8a6a2d; color: white; }
+
+/* ===== COMMANDES ===== */
+.carte-commande {
+    background: #3d1a00;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #f5c842;
+}
+
+.carte-commande h4 {
+    color: #f5c842;
+    margin-bottom: 8px;
+}
+
+.btn-pret {
+    background: #2d8a2d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.vide {
+    text-align: center;
+    color: #666;
+    padding: 30px;
+}
+
+.bouton-barista-container {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #f5c842;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
