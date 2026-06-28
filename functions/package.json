@@ -1,0 +1,16 @@
+{
+  "name": "luigi-s-cafe-functions",
+  "description": "Cloud Functions for Luigi's Café notifications",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.2.0",
+    "firebase-functions": "^6.3.2"
+  },
+  "private": true
+}

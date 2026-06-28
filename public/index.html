@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <title>Luigi's Café ☕</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <meta name="theme-color" content="#6f4e37" />
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+
+  <!-- ===== BANNIERE NOTIFICATIONS ===== -->
+  <div id="notifBanner" class="notif-banner" style="display:none;">
+    <strong id="notifTitle"></strong>
+    <span id="notifBody"></span>
+    <button onclick="this.parentElement.style.display='none'" style="background:none;border:none;color:white;margin-left:12px;cursor:pointer;">✕</button>
+  </div>
+
+  <!-- ===== STATUT CAFE (affiché en haut) ===== -->
+  <div id="cafeStatusBanner"></div>
+
+  <!-- ===== PAGE 1 : QUI COMMANDE ===== -->
+  <div class="page active" id="page-who">
+    <div class="header">
+      <h1>☕ Luigi's Café</h1>
+      <p>Qui commande ?</p>
+    </div>
+    <div class="card-grid" id="whoList"></div>
+
+    <!-- ===== PRENOM PERSONNALISE ===== -->
+    <div class="custom-name-section" style="max-width:600px;margin:0 auto;padding:0 16px;">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="customNameInput" placeholder="Ou tape un prénom..."
+          style="flex:1;padding:14px;border:2px solid #d7b89c;border-radius:12px;font-size:1rem;">
+        <button id="customNameBtn" style="padding:14px 20px;background:#6f4e37;color:white;border:none;border-radius:12px;font-size:1rem;cursor:pointer;">
+          Valider
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== COMMANDES PRETES ===== -->
+    <div id="readyOrdersSection" style="display:none;max-width:600px;margin:20px auto;padding:0 16px;">
+      <h3 style="color:#2e7d32;margin-bottom:12px;">✅ Commandes prêtes</h3>
+      <div id="readyOrdersList"></div>
+    </div>
+
+    <button class="barista-mode-btn" onclick="window.location.href='barista.html'">
+      👨‍🍳 Mode Barista
+    </button>
+  </div>
+
+  <!-- ===== PAGE 7 : ATTENTE OUVERTURE ===== -->
+  <div class="page" id="page-waiting">
+    <div class="header">
+      <h1>☕ Luigi's Café</h1>
+    </div>
+    <div style="text-align:center;padding:40px 20px;">
+      <div id="waitingWho" style="font-size:3rem;margin-bottom:8px;"></div>
+      <h2 style="color:#6f4e37;">Le café est fermé 🔴</h2>
+      <p style="color:#888;margin-bottom:24px;">Luigi est occupé, préviens Luigi et passe une commande !</p>
+      <button id="waitingBtn" style="display:block;margin:0 auto;padding:18px 36px;background:#6f4e37;color:white;border:none;border-radius:16px;font-size:1.2rem;cursor:pointer;">
+        🔔 Prévenir Luigi
+      </button>
+      <p id="waitingConfirm" style="display:none;color:#2e7d32;margin-top:20px;font-size:1.1rem;text-align:center;">
+        ✅ Luigi a été prévenu !
+      </p>
+      <button id="preorderBtn" style="display:none;margin:12px auto 0;padding:18px 36px;background:#2e7d32;color:white;border:none;border-radius:16px;font-size:1.2rem;cursor:pointer;">
+        📝 Précommander
+      </button>
+      <button id="backToWhoBtn" style="display:block;margin:16px auto 0;padding:12px 24px;background:#d7b89c;color:white;border:none;border-radius:12px;font-size:1rem;cursor:pointer;">
+        ← Changer de personne
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2 : QUI FAIT LE CAFE ===== -->
+  <div class="page" id="page-barista">
+    <div class="header">
+      <button class="back-btn" data-target="page-who">← Retour</button>
+      <h2>Qui prépare le café ?</h2>
+    </div>
+    <div class="card-grid" id="baristaList"></div>
+  </div>
+
+  <!-- ===== PAGE 3 : BOISSONS ===== -->
+<div class="page" id="page-drinks">
+  <div class="header">
+    <button class="back-btn" data-target="page-barista">← Retour</button>
+    <h2>Choisir une boisson</h2>
+  </div>
+  <div id="categoryTabs" class="tab-bar"></div>
+  <div id="drinkList" class="card-grid"></div>
+</div>
+
+<!-- ===== PAGE 4 : ADDONS ===== -->
+<div class="page" id="page-addons">
+  <div class="header">
+    <button class="back-btn" data-target="page-drinks">← Retour</button>
+    <h2>Personnaliser</h2>
+  </div>
+  <div id="addonsList" style="max-width:600px;margin:0 auto;padding:16px;"></div>
+  <div style="max-width:600px;margin:0 auto;padding:0 16px;">
+    <label for="notesInput" style="font-weight:bold;display:block;margin-bottom:8px;">📝 Notes spéciales</label>
+    <textarea id="notesInput" placeholder="Ex: sans sucre, très chaud..."
+      style="width:100%;padding:12px;border:2px solid #d7b89c;border-radius:10px;font-size:1rem;min-height:80px;"></textarea>
+    <button class="btn-primary" id="recapBtn">
+      Voir le récapitulatif →
+    </button>
+  </div>
+</div>
+
+<!-- ===== PAGE 5 : RECAP ===== -->
+<div class="page" id="page-recap">
+  <div class="header">
+    <button class="back-btn" data-target="page-addons">← Retour</button>
+    <h2>Récapitulatif</h2>
+  </div>
+  <div style="max-width:600px;margin:20px auto;padding:0 16px;">
+    <div class="recap-box">
+      <div class="recap-row">
+        <span class="recap-label">Commande pour</span>
+        <span id="recapWho"></span>
+      </div>
+      <div class="recap-row">
+        <span class="recap-label">Préparé par</span>
+        <span id="recapBarista"></span>
+      </div>
+      <div class="recap-row">
+        <span class="recap-label">Boisson</span>
+        <span id="recapCoffee"></span>
+      </div>
+      <div class="recap-row">
+        <span class="recap-label">Extras</span>
+        <ul id="recapAddons" style="list-style:none;text-align:right;"></ul>
+      </div>
+    </div>
+    <button id="confirmBtn" style="width:100%;padding:16px;background:#6f4e37;color:white;border:none;border-radius:12px;font-size:1.1rem;cursor:pointer;margin-top:16px;">
+      ✅ Confirmer la commande
+    </button>
+  </div>
+</div>
+
+<!-- ===== PAGE 6 : CONFIRMATION ===== -->
+<div class="page" id="page-confirm">
+  <div style="text-align:center;padding:60px 20px;">
+    <div style="font-size:4rem;">☕</div>
+    <h2 style="margin:16px 0;color:#6f4e37;">Commande envoyée !</h2>
+    <p style="color:#888;margin-bottom:24px;">Ton café est en préparation...</p>
+    <button id="newOrderBtn" style="padding:16px 32px;background:#6f4e37;color:white;border:none;border-radius:12px;font-size:1rem;cursor:pointer;">
+      Nouvelle commande
+    </button>
+  </div>
+</div>
+

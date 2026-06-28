@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <title>Mode Barista – Luigi's Café</title>
+  <link rel="stylesheet" href="style.css?v=2" />
+  <meta name="theme-color" content="#6f4e37" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <div class="barista-header">
+    <button class="back-btn" onclick="window.location.href='index.html'">← Retour</button>
+    <h1>👨‍🍳 Mode Barista</h1>
+  </div>
+
+  <!-- ===== STATUT DU CAFE ===== -->
+  <div class="barista-section">
+    <h2>Statut du café</h2>
+    <div id="cafeStatusBtns" class="status-grid"></div>
+  </div>
+
+  <!-- ===== NOTIFICATIONS RAPIDES ===== -->
+  <div class="barista-section">
+    <h2 style="cursor:pointer;user-select:none;" onclick="toggleQuickNotifs()">📢 Notifications rapides <span id="quickNotifToggle">▼</span></h2>
+    <div id="quickNotifContent" style="display:none;padding-top:12px;">
+
+      <!-- OUVRIR AUJOURD'HUI -->
+      <div style="margin-bottom:18px;">
+        <p style="font-weight:600;margin-bottom:8px;color:#ddd;">🕐 Ouverture aujourd'hui</p>
+        <div style="display:flex;gap:8px;">
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Luigi ouvre dans 10 minutes ! ⏰')">10 min</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Luigi ouvre dans 20 minutes ! ⏰')">20 min</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Luigi ouvre dans 30 minutes ! ⏰')">30 min</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="number" id="openTodayMin" placeholder="Minutes..." min="1" class="quick-notif-input">
+          <button class="quick-notif-btn quick-notif-send" onclick="sendQuickNotifFromInput(this, 'openTodayMin', 'Luigi ouvre dans {{v}} minutes ! ⏰')">Envoyer</button>
+        </div>
+      </div>
+
+      <!-- OUVRIR DEMAIN -->
+      <div style="margin-bottom:18px;">
+        <p style="font-weight:600;margin-bottom:8px;color:#ddd;">🌅 Ouverture demain</p>
+        <div style="display:flex;gap:8px;">
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Ouverture demain à 6h ! 🌅')">6h</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Ouverture demain à 7h ! 🌅')">7h</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Ouverture demain à 8h ! 🌅')">8h</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="number" id="openTomorrowHour" placeholder="Heure..." min="0" max="23" class="quick-notif-input">
+          <button class="quick-notif-btn quick-notif-send" onclick="sendQuickNotifFromInput(this, 'openTomorrowHour', 'Ouverture demain à {{v}}h ! 🌅')">Envoyer</button>
+        </div>
+      </div>
+
+      <!-- FERMETURE -->
+      <div style="margin-bottom:8px;">
+        <p style="font-weight:600;margin-bottom:8px;color:#ddd;">🔒 Fermeture</p>
+        <div style="display:flex;gap:8px;">
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Le café ferme dans 15 minutes ⏳')">15 min</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Le café ferme dans 30 minutes ⏳')">30 min</button>
+          <button class="quick-notif-btn" onclick="sendQuickNotif(this, 'Le café ferme dans 60 minutes ⏳')">60 min</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="number" id="closeMin" placeholder="Minutes..." min="1" class="quick-notif-input">
+          <button class="quick-notif-btn quick-notif-send" onclick="sendQuickNotifFromInput(this, 'closeMin', 'Le café ferme dans {{v}} minutes ⏳')">Envoyer</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== LISTE DES COMMANDES ===== -->
+  <div class="barista-section">
+    <h2>Commandes en cours</h2>
+    <div id="ordersList"></div>
+  </div>
+
+  <!-- ===== STATISTIQUES ===== -->
+  <div class="barista-section">
+    <h2>📊 Statistiques</h2>
+    <div id="statsContent" class="stats-grid"></div>
+  </div>
+
+  <!-- ===== HISTORIQUE ===== -->
+  <div class="barista-section">
+    <h2 style="cursor:pointer;" onclick="toggleHistory()">📜 Historique <span id="historyToggle">▼</span></h2>
+    <div id="historyContent" style="display:none;"></div>
+  </div>
+
+  <script type="module" src="js/barista.js"></script>
+  <script>
+    function toggleHistory() {
+      const el = document.getElementById('historyContent');
+      const toggle = document.getElementById('historyToggle');
+      const show = el.style.display !== 'block';
+      el.style.display = show ? 'block' : 'none';
+      toggle.textContent = show ? '▲' : '▼';
+    }
+  </script>
+</body>
+</html>
